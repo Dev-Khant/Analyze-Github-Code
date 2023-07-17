@@ -1,0 +1,18 @@
+{
+    "name": "LLM Repo-Info",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "description": "Get information of a Github Repository. Ask questions regarding it and get answer from power LLMs.",
+    "action": {
+        "default_title": "Get Github Repo Info using LLM",
+        "default_popup": "home.html"
+    },
+    "icons": {
+        "16": "logo/logo16.png",
+        "32": "logo/logo32.png",
+        "64": "logo/logo64.png",
+        "128": "logo/logo128.png",
+        "256": "logo/logo256.png"
+    },
+    "permissions": ["activeTab", "storage"]
+}
