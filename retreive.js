@@ -1,10 +1,39 @@
-chrome.storage.sync.get(['openaiKey'], function(result) {
-    var openaiKey = result.openaiKey;
-    displayOpenAIKey(openaiKey);
-});
+document.addEventListener('DOMContentLoaded', function() {
+    var currentLinkBtn = document.getElementById('currentLinkBtn');
+    
+    currentLinkBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        var currentPageLink;
+        
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+            currentPageLink = tabs[0].url;
+        });
 
-function displayOpenAIKey(openaiKey) {
+        chrome.storage.sync.get(['openaiKey'], function(result) {
+            var openaiKey = result.openaiKey;
+            displayOpenAIKey(openaiKey, currentPageLink);
+        });
+      
+    });
+});
+  
+
+function displayOpenAIKey(openaiKey, currentPageLink) {
     var openaiKeyContainer = document.getElementById('openaiKeyContainer');
-    openaiKeyContainer.textContent = "OpenAI Key: " + openaiKey;
+
+    if (openaiKey) {
+        fetch('http://localhost:8000', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"openaiKey": openaiKey, "currentPageLink": currentPageLink})
+            })
+            .then(response => response.text())
+            .then(data => {
+        
+            openaiKeyContainer.textContent = "Data :" + data;
+        });
+    }
 }
   

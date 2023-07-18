@@ -1,22 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementById('keyForm');
-    var openaiKeyInput = document.getElementById('openaiKey');
-  
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        saveOpenAIKey();
-    });
-  
-    function saveOpenAIKey() {
-        var openaiKey = openaiKeyInput.value;
-        
-        // Store the OpenAI key in Chrome storage
-        chrome.storage.sync.set({ 'openaiKey': openaiKey }, function() {
-            console.log('OpenAI Key saved:', openaiKey);
-
-            // Redirect to welcome.html
-            window.location.href = "welcome.html";
-      });
+chrome.storage.sync.get(['openaiKey'], function(result) {
+    var openaiKey = result.openaiKey;
+    if (openaiKey) {
+        // Key already set, redirect to welcome.html
+        window.location.href = "welcome.html";
     }
-  });
+});
+
+document.getElementById('keyForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var openaiKey = document.getElementById('openaiKey').value;
+    chrome.storage.sync.set({ 'openaiKey': openaiKey }, function() {
+        console.log('OpenAI Key saved:', openaiKey);
+    });
+
+    // Redirect to welcome.html after saving the key
+    window.location.href = "welcome.html";
+});
+  
   

@@ -1,19 +1,25 @@
-import asyncio
-from pyppeteer import launch
+from flask import Flask, request
+from flask_cors import cross_origin
 
-async def retrieve_value():
-    browser = await launch()
-    page = await browser.newPage()
-    await page.goto('popup.js')  # Replace with the actual path to retrieve_data.js
-    await asyncio.sleep(1)  # Wait for the JavaScript code to execute
+app = Flask(__name__)
 
-    # Get the result from the console
-    result = await page.evaluate('() => { return window.result; }')
 
-    await browser.close()
+@app.route("/", methods=["POST"])
+@cross_origin()
+def process():
+    data = request.get_json()
+    openai_key = data.get("openaiKey")
+    currentPageLink = data.get("currentPageLink")
 
-    return result
+    if openai_key and currentPageLink:
+        print("Received OpenAI Key:", openai_key)
+        print("Received Link:", currentPageLink)
 
-# Run the retrieval function
-result_value = asyncio.get_event_loop().run_until_complete(retrieve_value())
-print(result_value)
+        # Process the key in Python as needed
+        return openai_key + "  " + currentPageLink
+    else:
+        return "Error"
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="localhost", port=8000)
