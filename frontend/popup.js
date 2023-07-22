@@ -2,7 +2,7 @@ chrome.storage.sync.get(['openaiKey'], function(result) {
     var openaiKey = result.openaiKey;
     if (openaiKey) {
         // Key already set, redirect to welcome.html
-        window.location.href = "welcome.html";
+        window.location.href = "home.html";
     }
 });
 
@@ -14,7 +14,7 @@ document.getElementById('keyForm').addEventListener('submit', function(event) {
     });
 
     // Redirect to welcome.html after saving the key
-    window.location.href = "welcome.html";
+    window.location.href = "home.html";
 });
   
   

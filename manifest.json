@@ -5,7 +5,7 @@
     "description": "Get information of a Github Repository. Ask questions regarding it and get answer from power LLMs.",
     "action": {
         "default_title": "Get Github Repo Info using LLM",
-        "default_popup": "frontend/home.html"
+        "default_popup": "frontend/welcome.html"
     },
     "icons": {
         "16": "logo/logo16.png",

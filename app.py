@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route("/", methods=["POST"])
-@cross_origin()
+@cross_origin()  # Avoid CORS errors
 def process():
     data = request.get_json()
     openai_key = data.get("openaiKey")
