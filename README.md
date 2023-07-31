@@ -19,3 +19,5 @@ The GitHub Code Analysis Chrome Extension is a powerful tool that allows users t
 ## 🎯 Future Enhancements:
 
 - Support for more open-source LLMs.
+
+# Work In Progress 🚧
