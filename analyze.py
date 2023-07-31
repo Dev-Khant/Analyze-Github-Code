@@ -3,7 +3,7 @@ from LLM.scrap import scrap_repo
 
 class AnalyzeRepo:
     def __init__(self, token, url):
-        self.token = token
+        self.llm_token = token
 
         parsed_url = url.split("/")
         self.github_owner = parsed_url[-2]  # Get the owner
@@ -12,5 +12,13 @@ class AnalyzeRepo:
 
     def run(self):
         result = scrap_repo(
-            self.github_owner, self.github_repo_name, self.github_access_token
+            self.github_owner, self.github_repo_name, self.github_access_token, self.llm_token
         )
+
+        return result
+
+token = ""
+url = ""
+x = AnalyzeRepo(token, url)
+
+x.run()
