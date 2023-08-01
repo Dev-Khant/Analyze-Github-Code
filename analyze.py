@@ -6,10 +6,14 @@ logger = logging.getLogger("AnalyzeRepo")
 
 
 class AnalyzeRepo:
+    """
+    Main Class to perform all analyzing and summary operations
+    """
+
     def __init__(self, token, url):
         self.llm_token = token
 
-        parsed_url = url.split("/")
+        parsed_url = url.split("/")  # Split URL based on /
         self.github_owner = parsed_url[-2]  # Get the owner
         self.github_repo_name = parsed_url[-1]  # Get the repo name
         self.github_access_token = ""

@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask_cors import cross_origin
 
+from analyze import AnalyzeRepo
+
 app = Flask(__name__)
 
 
@@ -12,11 +14,11 @@ def process():
     currentPageLink = data.get("currentPageLink")
 
     if openai_key and currentPageLink:
-        print("Received OpenAI Key:", openai_key)
-        print("Received Link:", currentPageLink)
+        # Call AnalyzeRepo and get detailed summary
+        summary_generator = AnalyzeRepo(openai_key, currentPageLink)
+        result = summary_generator.run()
 
-        # Process the key in Python as needed
-        return openai_key + "  " + currentPageLink
+        return result
     else:
         return "Error"
 
