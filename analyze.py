@@ -16,7 +16,7 @@ class AnalyzeRepo:
         parsed_url = url.split("/")  # Split URL based on /
         self.github_owner = parsed_url[-2]  # Get the owner
         self.github_repo_name = parsed_url[-1]  # Get the repo name
-        self.github_access_token = "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"
+        self.github_access_token = "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"
         logger.info("Necessary variables set")
 
     def run(self):
