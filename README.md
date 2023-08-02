@@ -23,3 +23,7 @@ It can be used for small or mid sized repository where it's hard to find proper 
 - Support for more open-source LLMs.
 
 # Work In Progress 🚧
+
+1. Complete flow is **working**. It can be run locally.
+2. Improving UI.
+3. Deployment to server to clould and extension to Chrome web store.
