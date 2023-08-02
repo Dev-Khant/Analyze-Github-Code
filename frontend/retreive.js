@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         var currentPageLink;
         
+        // Get
         chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
             currentPageLink = tabs[0].url;
         });
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
   
-
+// Send request to Flask server
 function displayOpenAIKey(openaiKey, currentPageLink) {
     var container = document.getElementById('summary-container');
 
@@ -32,7 +33,7 @@ function displayOpenAIKey(openaiKey, currentPageLink) {
             .then(response => response.text())
             .then(data => {
         
-            container.textContent = "Data :" + data;
+            container.textContent = data;
         });
     }
 }

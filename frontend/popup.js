@@ -1,3 +1,4 @@
+// Get openai token
 chrome.storage.sync.get(['openaiKey'], function(result) {
     var openaiKey = result.openaiKey;
     if (openaiKey) {
@@ -6,6 +7,7 @@ chrome.storage.sync.get(['openaiKey'], function(result) {
     }
 });
 
+// Store openai token
 document.getElementById('keyForm').addEventListener('submit', function(event) {
     event.preventDefault();
     var openaiKey = document.getElementById('openaiKey').value;
@@ -14,7 +16,7 @@ document.getElementById('keyForm').addEventListener('submit', function(event) {
     });
 
     // Redirect to welcome.html after saving the key
-    window.location.href = "home.html";
+    window.close();
 });
   
   

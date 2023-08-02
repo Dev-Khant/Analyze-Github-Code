@@ -10,6 +10,7 @@ exclude_extensions = [
     "jpg",
     "jpeg",
     "svg",
+    "md",
 ]  # exclude files with these extensions
 no_decode_extensions = ["md", "html"]  # No ASCII decoding
 
@@ -30,7 +31,7 @@ def scrap_repo(github_owner, github_repo_name, github_access_token, llm_token):
     # Get repo contents
     repo = g.get_repo(f"{github_owner}/{github_repo_name}")
     contents = repo.get_contents("")
-    summary_list = []
+    code_list = []
 
     while contents:
         file_content = contents.pop(0)
@@ -47,12 +48,8 @@ def scrap_repo(github_owner, github_repo_name, github_access_token, llm_token):
             else:
                 text = file_content.decoded_content.decode("ASCII")
 
-            # Get summary of each code file
-            code_summary = get_summary.summarize_code(text)
-            logger.info(f"Code Summary {code_summary}")
-            summary_list.append(code_summary)
-            break
+            code_list.append(text)
 
     logger.info("Summarizing all code")
-    summary = get_summary.summarize_repo(llm_token, summary_list)
+    summary = get_summary.summarize_repo(code_list)
     return summary
