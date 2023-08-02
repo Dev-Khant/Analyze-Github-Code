@@ -2,6 +2,8 @@
 
 The GitHub Code Analysis Chrome Extension is a powerful tool that allows users to easily retrieve GitHub repository URLs, analyze their code, and obtain detailed explanations for the code snippets. Powered by OpenAI's advanced language model, ChatGPT, and built on Python with a Flask backend server, this extension delivers comprehensive insights into code repositories.
 
+It can be used for small or mid sized repository where it's hard to find proper documentation or have a Readme with less information.
+
 ## 🚀 Features:
 
 - **GitHub Repo URL Retrieval :** Simply input the GitHub repository URL into the extension, and it will instantly fetch the code for analysis.
