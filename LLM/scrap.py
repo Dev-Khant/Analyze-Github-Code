@@ -22,8 +22,7 @@ def scrap_repo(github_owner, github_repo_name, github_access_token, llm_token):
     """
 
     # Setup Github and OpenAI
-    auth = Auth.Token(github_access_token)
-    g = Github(auth=auth)
+    g = Github()
     get_summary = LLM_Summarize(llm_token)
 
     logger.info("Github & OpenAI set")

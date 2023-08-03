@@ -26,7 +26,8 @@ class LLM_Summarize:
                                     Summaries : {summary_list}
 
                                     Limit final summary to 2000 words. Provide an elegant answer highlighting its purpose, 
-                                    main features, and key technologies used. Include 2-3 emojis.
+                                    main features, and key technologies used. Include 2-3 emojis. Response will be shown in HTML page
+                                    inside a <p> tag so make it compatible with it.
                                     
                                     """
 
