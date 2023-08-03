@@ -2,8 +2,8 @@
 chrome.storage.sync.get(['openaiKey'], function(result) {
     var openaiKey = result.openaiKey;
     if (openaiKey) {
-        // Key already set, redirect to welcome.html
-        window.location.href = "home.html";
+        // Key already set, redirect to home.html
+        window.location.href = "summary.html";
     }
 });
 
