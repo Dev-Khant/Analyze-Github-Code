@@ -15,7 +15,7 @@ exclude_extensions = [
 no_decode_extensions = ["md", "html"]  # No ASCII decoding
 
 
-def scrap_repo(github_owner, github_repo_name, github_access_token, llm_token):
+def scrap_repo(github_owner, github_repo_name, llm_token):
     """
     Function to traverse through each file in Repo
     Pass each code file to LLM and get summary

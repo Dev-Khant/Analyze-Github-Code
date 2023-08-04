@@ -17,8 +17,7 @@ def process():
         # Call AnalyzeRepo and get detailed summary
         summary_generator = AnalyzeRepo(openai_key, currentPageLink)
         result = summary_generator.run()
-
-        return result["output_text"]
+        return result
     else:
         return "Error"
 

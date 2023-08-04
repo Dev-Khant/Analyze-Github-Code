@@ -26,10 +26,7 @@ class LLM_Summarize:
                                     Summaries : {summary_list}
 
                                     Limit final summary to 2000 words. Provide an elegant answer highlighting its purpose, 
-                                    main features, and key technologies used. Include 2-3 emojis. Response will be shown in HTML page
-                                    inside a <p> tag so make it compatible with it.
-                                    
-                                    """
+                                    main features, and key technologies used. Include 2-3 emojis."""
 
     def summarize_repo(self, code_list):
         """
@@ -58,7 +55,14 @@ class LLM_Summarize:
         )
         logger.info("Running LLM")
 
-        result = chain({"input_documents": code_list}, return_only_outputs=True)
+        result = chain({"input_documents": code_list}, return_only_outputs=True)[
+            "output_text"
+        ]
+
+        # Configuring according to HTML page
+        result = result.replace("\n", "<br>")
+        result = result.replace(" ", "&nbsp;")
+
         logger.info("Result Generated")
 
         return result
