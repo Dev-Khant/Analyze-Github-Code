@@ -1,5 +1,5 @@
 {
-    "name": "LLM Repo-Info",
+    "name": "Analyze Github Code",
     "version": "0.0.1",
     "manifest_version": 3,
     "description": "Get information of a Github Repository. Ask questions regarding it and get answer from power LLMs.",
