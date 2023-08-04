@@ -4,7 +4,7 @@ The GitHub Code Analysis Chrome Extension is a powerful tool that allows users t
 
 It can be used for small or mid sized repository where it's hard to find proper documentation or have a Readme with less information.
 
-### It might take time because depends upon the OpenAI key token limit if there's an error then it will show it or else you will get the results. So sit tight and wait for results 🚨🚨
+### 🚨 It might take time because depends upon the OpenAI key token limit if there's an error then it will show it or else you will get the results. So sit tight and wait for results 🚨
 
 ## 🚀 Features:
 
