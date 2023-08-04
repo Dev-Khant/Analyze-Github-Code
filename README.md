@@ -4,6 +4,8 @@ The GitHub Code Analysis Chrome Extension is a powerful tool that allows users t
 
 It can be used for small or mid sized repository where it's hard to find proper documentation or have a Readme with less information.
 
+### It might take time because depends upon the OpenAI key token limit if there's an error then it will show it or else you will get the results. So sit tight and wait for results 🚨🚨
+
 ## 🚀 Features:
 
 - **GitHub Repo URL Retrieval :** Simply input the GitHub repository URL into the extension, and it will instantly fetch the code for analysis.
@@ -17,6 +19,8 @@ It can be used for small or mid sized repository where it's hard to find proper 
 1. Clone the repository and install the necessary dependencies using `pip`.
 2. Run the Flask backend server to handle API requests.
 3. Install the Chrome extension by enabling developer mode and loading the unpacked extension.
+4. After enabling extension for first time it will ask for OpenAI key so grab and paste your key.
+5. Go to the desired Repository and press the button to get its summary. 
 
 ## 🎯 Future Enhancements:
 
@@ -24,6 +28,5 @@ It can be used for small or mid sized repository where it's hard to find proper 
 
 # Work In Progress 🚧
 
-1. Complete flow is **working**. It can be run locally.
-2. Improving UI.
-3. Deployment to server to clould and extension to Chrome web store.
+1. Improving UI.
+2. Deployment to server to clould and extension to Chrome web store.
