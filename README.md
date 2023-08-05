@@ -28,6 +28,5 @@ It can be used for small or mid sized repository where it's hard to find proper 
 
 # Work In Progress 🚧
 
-1. Handle big code files as they have more tokens.
-2. Improving UI.
-3. Deployment to server to clould and extension to Chrome web store.
+1. Improving UI.
+2. Deployment to server to clould and extension to Chrome web store.
