@@ -16,17 +16,17 @@ It can be used for small or mid sized repository where it's hard to find proper 
 
 ## ⚙️ Installation and Usage:
 
-1. Clone the repository and install the necessary dependencies using `pip`.
-2. Run the Flask backend server to handle API requests.
+1. `pip install -r requirements.txt`
+2. Run: `python app.py`. This runs **Flask** server.
 3. Install the Chrome extension by enabling developer mode and loading the unpacked extension.
-4. After enabling extension for first time it will ask for OpenAI key so grab and paste your key.
+4. For first time it will ask for OpenAI key so grab and paste your key.
 5. Go to the desired Repository and press the button to get its summary. 
 
 ## 🎯 Future Enhancements:
 
 - Support for more open-source LLMs.
 
-# Work In Progress 🚧
+## 🚧 Work In Progress
 
 1. Improving UI.
 2. Deployment to server to clould and extension to Chrome web store.
