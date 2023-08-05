@@ -3,7 +3,9 @@ import logging
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.docstore.document import Document
-from langchain.chains.summarize import load_summarize_chain
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.chains import LLMChain, ReduceDocumentsChain, MapReduceDocumentsChain
+from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("GenerateSummary")
@@ -14,18 +16,19 @@ class LLM_Summarize:
 
     def __init__(self, llm_token):
         self.llm = ChatOpenAI(temperature=0.1, openai_api_key=llm_token)
-        self.code_summmary_prompt = """You are an elite programmer who can understand Github Repository code give to you in text very
+        self.code_summary_prompt = """You are an elite programmer who can understand Github Repository code give to you in text very
                                      well and summarize what is written in it.
 
-                                    Code : {text}
+                                    Code : {codes}
 
-                                    Summarize the above code present between delimiters in 50-70 words and in paragraph"""
+                                    Summarize the above list of codes present between delimiters in 50-70 words each and in paragraph.
+                                    Store it in a list."""
         self.all_summary_prompt = """You are great at understanding bigger picture of a codebase by looking at summary of different code 
                                     files. Given the following summaries and you have to tell in detail what does the project do.
                                      
                                     Summaries : {summary_list}
 
-                                    Limit final summary to 2000 words. Provide an elegant answer highlighting its purpose, 
+                                    Limit final summary to 2000-3000 words. Provide an elegant answer highlighting its purpose, 
                                     main features, and key technologies used. Include 2-3 emojis."""
 
     def summarize_repo(self, code_list):
@@ -36,28 +39,40 @@ class LLM_Summarize:
 
         code_list = [Document(page_content=code) for code in code_list]
 
-        # Prompt to use in map and reduce stages
-        CODE_SUMMARY = PromptTemplate(
-            template=self.code_summmary_prompt, input_variables=["text"]
-        )
-        ALL_SUMMARY = PromptTemplate(
-            template=self.all_summary_prompt, input_variables=["summary_list"]
-        )
+        # Map
+        MAP_PROMPT = PromptTemplate.from_template(template=self.code_summary_prompt)
+        map_chain = LLMChain(llm=self.llm, prompt=MAP_PROMPT)
+
+        # Reduce
+        REDUCE_PROMPT = PromptTemplate.from_template(template=self.all_summary_prompt)
+        reduce_chain = LLMChain(llm=self.llm, prompt=REDUCE_PROMPT)
 
         logger.info("Prompt Ready")
 
-        chain = load_summarize_chain(
-            self.llm,
-            chain_type="map_reduce",
-            map_prompt=CODE_SUMMARY,
-            combine_prompt=ALL_SUMMARY,
-            combine_document_variable_name="summary_list",
+        combine_documents_chain = StuffDocumentsChain(
+            llm_chain=reduce_chain, document_variable_name="summary_list"
         )
-        logger.info("Running LLM")
+        reduce_documents_chain = ReduceDocumentsChain(
+            combine_documents_chain=combine_documents_chain,
+            collapse_documents_chain=combine_documents_chain,
+            token_max=4000,
+        )
 
-        result = chain({"input_documents": code_list}, return_only_outputs=True)[
-            "output_text"
-        ]
+        map_reduce_chain = MapReduceDocumentsChain(
+            llm_chain=map_chain,
+            reduce_documents_chain=reduce_documents_chain,
+            document_variable_name="codes",
+            return_intermediate_steps=False,
+        )
+
+        # Split text
+        text_splitter = CharacterTextSplitter.from_tiktoken_encoder(
+            chunk_size=1000, chunk_overlap=0
+        )
+        split_docs = text_splitter.split_documents(code_list)
+
+        logger.info("Running LLM")
+        result = map_reduce_chain.run(split_docs)
 
         # Configuring according to HTML page
         result = result.replace("\n", "<br>")

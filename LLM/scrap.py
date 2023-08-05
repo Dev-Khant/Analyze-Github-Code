@@ -10,9 +10,10 @@ exclude_extensions = [
     "jpg",
     "jpeg",
     "svg",
-    "md",
+    "pkl",
+    "gitignore",
+    "txt",
 ]  # exclude files with these extensions
-no_decode_extensions = ["md", "html"]  # No ASCII decoding
 
 
 def scrap_repo(github_owner, github_repo_name, llm_token):
@@ -40,12 +41,7 @@ def scrap_repo(github_owner, github_repo_name, llm_token):
             extension = file_content.path.split(".")[-1]  # Get file extension
             if extension in exclude_extensions:
                 continue
-            elif extension in no_decode_extensions:
-                text = (
-                    file_content.decoded_content.decode()
-                )  # No ASCII decoding, get raw content
-            else:
-                text = file_content.decoded_content.decode("ASCII")
+            text = file_content.decoded_content.decode()
 
             code_list.append(text)
 

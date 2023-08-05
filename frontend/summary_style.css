@@ -10,7 +10,8 @@ body {
     font-size: 15px;
     color: #fff;
     text-align: center;
-    word-wrap: break-word;
+    /* word-wrap: break-word; */
+    overflow-wrap: normal;
     margin-bottom: 30px;
     width: 700px;
     /* width: 100%; */
