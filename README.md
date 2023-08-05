@@ -30,3 +30,4 @@ It can be used for small or mid sized repository where it's hard to find proper 
 
 1. Improving UI.
 2. Deployment to server to clould and extension to Chrome web store.
+3. Due token limit, handle bigger code file and get proper context of it.
