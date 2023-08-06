@@ -10,11 +10,9 @@ body {
     font-size: 15px;
     color: #fff;
     text-align: center;
-    /* word-wrap: break-word; */
-    overflow-wrap: normal;
+    word-wrap: break-word;
     margin-bottom: 30px;
     width: 700px;
-    /* width: 100%; */
 }
 
 h1 {

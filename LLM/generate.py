@@ -1,7 +1,7 @@
 import logging
 
 from langchain.chat_models import ChatOpenAI
-from langchain.prompts import PromptTemplate
+from langchain.prompts import PromptTemplate, ChatPromptTemplate
 from langchain.docstore.document import Document
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains import LLMChain, ReduceDocumentsChain, MapReduceDocumentsChain
@@ -28,8 +28,14 @@ class LLM_Summarize:
                                      
                                     Summaries : {summary_list}
 
-                                    Limit final summary to 2000-3000 words. Provide an elegant answer highlighting its purpose, 
+                                    Limit final summary to 2000 words. Provide an elegant answer highlighting its purpose, 
                                     main features, and key technologies used. Include 2-3 emojis."""
+        self.format_response = """
+                                Given a below text modify it in HTML format for <p> tag. Use proper spacing, replace all space and line break with required
+                                HTML tags. Highlight main words by using proper tags.
+
+                                Text : {text} 
+                                """
 
     def summarize_repo(self, code_list):
         """
@@ -74,10 +80,11 @@ class LLM_Summarize:
         logger.info("Running LLM")
         result = map_reduce_chain.run(split_docs)
 
-        # Configuring according to HTML page
-        result = result.replace("\n", "<br>")
-        result = result.replace(" ", "&nbsp;")
+        # Change response from LLM to HTML format
+        FORMAT_PROMPT = ChatPromptTemplate.from_template(self.format_response)
+        FORMAT_MSG = FORMAT_PROMPT.format_messages(text=result)
+        response = self.llm(FORMAT_MSG).content
 
         logger.info("Result Generated")
 
-        return result
+        return response
