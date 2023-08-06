@@ -28,8 +28,8 @@ class LLM_Summarize:
                                      
                                     Summaries : {summary_list}
 
-                                    Limit final summary to 2000-3000 words. Provide an elegant answer highlighting its purpose, 
-                                    main features, and key technologies used. Include 2-3 emojis."""
+                                    Limit final summary to 2000 words. Provide an elegant answer highlighting its purpose, 
+                                    main features, and key technologies used. Include 2-3 emojis. Highlight important words."""
 
     def summarize_repo(self, code_list):
         """
