@@ -30,7 +30,7 @@ function displayOpenAIKey(openaiKey, currentPageLink) {
     var summaryContainer = document.getElementById('summary-container');
 
     if (openaiKey) {
-        fetch('http://localhost:8000', {
+        fetch('https://devkhant46.pythonanywhere.com/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
