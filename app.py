@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template_string
 from flask_cors import cross_origin
 
 from analyze import AnalyzeRepo
@@ -17,7 +17,7 @@ def process():
         # Call AnalyzeRepo and get detailed summary
         summary_generator = AnalyzeRepo(openai_key, currentPageLink)
         result = summary_generator.run()
-        return result
+        return render_template_string(result)
     else:
         return "Error"
 
