@@ -53,7 +53,7 @@ function displayOpenAIKey(openaiKey, currentPageLink) {
             // Hide the loading animation and display an error message on failure
             loadingContainer.style.display = 'none';
 
-            summaryContainer.innerHTML = 'Error: Failed to retrieve data from the server.';
+            summaryContainer.innerHTML = error;
         });
     }
 }
