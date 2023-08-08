@@ -13,13 +13,13 @@ def process():
     openai_key = data.get("openaiKey")
     currentPageLink = data.get("currentPageLink")
 
-    if openai_key and currentPageLink:
+    try:
         # Call AnalyzeRepo and get detailed summary
         summary_generator = AnalyzeRepo(openai_key, currentPageLink)
         result = summary_generator.run()
         return render_template_string(result)
-    else:
-        return "Error"
+    except Exception as e:
+        return str(e)
 
 
 if __name__ == "__main__":

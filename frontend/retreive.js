@@ -30,7 +30,7 @@ function displayOpenAIKey(openaiKey, currentPageLink) {
     var summaryContainer = document.getElementById('summary-container');
 
     if (openaiKey) {
-        fetch('https://devkhant46.pythonanywhere.com/', {
+        fetch('http://localhost:8000/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ function displayOpenAIKey(openaiKey, currentPageLink) {
             // Hide the loading animation and display an error message on failure
             loadingContainer.style.display = 'none';
 
-            summaryContainer.innerHTML = 'Error: Failed to retrieve data from the server.';
+            summaryContainer.innerHTML = error;
         });
     }
 }
