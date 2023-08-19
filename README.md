@@ -22,10 +22,6 @@ It can be used for small or mid sized repository where it's hard to find proper 
 4. For first time it will ask for OpenAI key so grab and paste your key.
 5. Go to the desired Repository and press the button to get its summary. 
 
-## 🎯 Future Enhancements:
-
-- Support for more open-source LLMs.
-
 ## 🧑‍💻 Technical Stuff:
 
 - **Langchain** is used for interacting with LLMs.
