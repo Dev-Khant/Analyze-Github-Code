@@ -32,9 +32,3 @@ It can be used for small or mid sized repository where it's hard to find proper 
 - Using OpenAI's **gpt-3.5-turbo** as LLM.
 - Used **pygithub** for traversing through github repo.
 - **Flask** is used for backend server. Deployed on [pythonanywhere](https://www.pythonanywhere.com/) (thanks for free hosting for some time 😊)
-
-## 🚧 Work In Progress
-
-1. Improving UI.
-2. Due token limit, handle bigger code file and get proper context of it.
-3. Scaling of server by deploying it in Cloud. 
