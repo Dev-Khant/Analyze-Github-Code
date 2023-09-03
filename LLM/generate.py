@@ -32,7 +32,7 @@ class LLM_Summarize:
                                     main features, and key technologies used. Include 2-3 emojis."""
         self.format_response = """
                                 Given a below text modify it in HTML format for <p> tag. Use proper spacing, replace all space and line break with required
-                                HTML tags. Highlight main words by using proper tags. Include headings if reuquired.
+                                HTML tags. Highlight main words by using proper tags. Include headings if required.
 
                                 Text : {text} 
                                 """
